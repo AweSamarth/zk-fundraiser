@@ -1,0 +1,7 @@
+zkFundraiser
+const zkFundraiser = await ethers.getContractFactory("ZkFundraiser")
+ethers.getContractFactory("ZkFundraiser")
+ethers
+hre
+config
+.help
