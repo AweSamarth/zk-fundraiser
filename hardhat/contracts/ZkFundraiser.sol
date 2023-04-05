@@ -10,6 +10,8 @@ contract ZkFundraiser{
 
     struct Campaign{
         address campaigner;
+        string title;
+        string description;
         uint64 id;
         uint256 amountNeeded;
         uint256 amountReceived;
@@ -26,10 +28,10 @@ contract ZkFundraiser{
     function createCampaign(string memory _title, string memory _description, uint128 _ethAmountNeeded) public{
 
 
-        Campaign memory toBePushed = Campaign({campaigner:msg.sender, id:++counter, amountReceived:0, amountNeeded:_ethAmountNeeded*10**18});
+        Campaign memory toBePushed = Campaign({title:_title, description:_description, campaigner:msg.sender, id:++counter, amountReceived:0, amountNeeded:_ethAmountNeeded*10**18});
         campaignGetter[counter] = toBePushed;
         onesCampaigns[msg.sender].push(counter);
-        emit CampaignCreated(msg.sender, counter, _title, _description);
+        // emit CampaignCreated(msg.sender, counter, _title, _description);
 
 
     } 
@@ -65,6 +67,16 @@ contract ZkFundraiser{
        }
         
     }
+
+    function getBalance() public view returns(uint256){
+        return balances[msg.sender];
+    }
+
+    function getCounter() public view returns(uint64){
+        return counter;
+    }
+
+
 
     fallback() external payable{}
     receive() external payable{}
