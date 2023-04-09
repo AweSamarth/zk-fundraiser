@@ -36,8 +36,11 @@ export default function Home() {
     await contract?.createCampaign(_title, _description, _ethAmountNeeded)
   }
 
+  // async function getCampaign(){
+  //   console.log(await contract?.getCampaign(1))
+  // }
   async function getCampaign(){
-    console.log(await contract?.getCampaign(1))
+    console.log(await contract?.campaignGetter(1))
   }
 
   async function getOnesCampaigns(){
@@ -54,6 +57,10 @@ export default function Home() {
 
   async function getBalance(){
     console.log(await contract?.getBalance())
+  }
+
+  async function getCounter(){
+    console.log(await contract?.counter())
   }
 
   return (
@@ -108,6 +115,13 @@ export default function Home() {
               Get Balance
             </button>
           </div>
+
+          <div>
+            <button onClick={()=>getCounter()} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+              Get Counter
+            </button>
+          </div>
+
         </div>
       </div>
     </>

@@ -18,11 +18,11 @@ contract ZkFundraiser{
         
     }
 
-    uint64 counter;
+    uint64 public counter;
 
-    mapping(uint64=>Campaign) campaignGetter;
-    mapping(address=> uint64[]) onesCampaigns;
-    mapping(address=>uint256) balances;
+    mapping(uint64=>Campaign) public campaignGetter;
+    mapping(address=> uint64[]) public onesCampaigns;
+    mapping(address=>uint256) public balances;
 
 
     function createCampaign(string memory _title, string memory _description, uint128 _ethAmountNeeded) public{
@@ -36,11 +36,6 @@ contract ZkFundraiser{
 
     } 
 
-    function getCampaign(uint64 _id) public view returns(Campaign memory){
-        return campaignGetter[_id];
-
-
-    }
 
     function getOnesCampaigns(address _address) public view returns(uint64[] memory){
         return onesCampaigns[_address];
@@ -71,11 +66,6 @@ contract ZkFundraiser{
     function getBalance() public view returns(uint256){
         return balances[msg.sender];
     }
-
-    function getCounter() public view returns(uint64){
-        return counter;
-    }
-
 
 
     fallback() external payable{}
